@@ -1,6 +1,3 @@
-<?php
-    session_start();
-?>
 
 <div class="container">
     <?php if (isset($_SESSION['user_id'])) :?>

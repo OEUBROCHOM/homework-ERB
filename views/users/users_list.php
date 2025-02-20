@@ -13,7 +13,9 @@ if (session_status() == PHP_SESSION_NONE) {
                 <th>Username</th>
                 <th>Email</th>
                 <th>Role</th>
-                <th>Actions</th>
+                <?php if ($_SESSION['user_role']== 'admin') : ?>
+                    <th>Actions</th>
+                <?php endif;?>
             </tr>
         </thead>
         <tbody>
@@ -23,10 +25,12 @@ if (session_status() == PHP_SESSION_NONE) {
                 <td><?= $user['name'] ?></td>
                 <td><?= $user['email'] ?></td>
                 <td><?= $user['role'] ?></td>
-                <td>
-                    <a href="/users/edit/<?= $user['id'] ?>"><i class="material-icons">edit</i></a>
-                    <a href="/users/delete/<?= $user['id'] ?>"><i class="material-icons text-danger">delete</i></a>
-                </td>
+                <?php if ($_SESSION['user_role'] === 'admin') : ?>
+                    <td>
+                        <a href="/users/edit/<?= $user['id'] ?>"><i class="material-icons">edit</i></a>
+                        <a href="/users/delete/<?= $user['id'] ?>"><i class="material-icons text-danger">delete</i></a>
+                    </td>
+                <?php endif; ?>
             </tr>
         <?php endforeach; ?>
         </tbody>
